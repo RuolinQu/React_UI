@@ -3,12 +3,3 @@ node_js:
   - "stable"
  cache:
   - node_modules
- script:
-  - npm run build-storybook
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  
-  local_dir: static
-  on:
-    branch: master
