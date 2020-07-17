@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+ - "stable"
+ cache:
+ - node_modules
+ rvm:
+ - CI=true
