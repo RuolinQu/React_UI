@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Storybook</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>html, body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }</style><script>/* globals window */
+  /* eslint-disable no-underscore-dangle */
+  try {
+    if (window.top !== window) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.top.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('unable to connect to top frame for connecting dev tools');
+  }</script><script>var hideStyle = document.createElement('style');
+    document.head.appendChild(hideStyle);
+
+    var hideCategories = function () {
+        hideStyle.innerHTML =
+            '.simplebar-content > .css-0 { visibility: hidden; }';
+    };
+
+    var showCategories = function () {
+        hideStyle.innerHTML = '';
+    };
+
+    var clickCollapsedItemsUntilNoneLeft = () => {
+        try {
+            var items = Array.from(
+                document.querySelectorAll(
+                    ".simplebar-content [id^='explorer']:not([href])",
+                ),
+            );
+            var expandedItems = Array.from(
+                document.querySelectorAll(
+                    ".simplebar-content [id^='explorer']:not([href]) + .css-0",
+                ),
+            ).map(e => e.previousSibling);
+
+            var itemsLeftToClick = items.filter(item =>
+                expandedItems.every(expandedItem => item !== expandedItem),
+            );
+
+            if (itemsLeftToClick.length > 0) {
+                itemsLeftToClick.forEach(item => item.click());
+
+                clickCollapsedItemsUntilNoneLeft();
+            } else {
+                // everything is now expanded, show the content!
+                showCategories();
+            }
+        } catch (e) {
+            console.error(e);
+
+            showCategories();
+        }
+    };
+
+    hideCategories();
+
+    window.onload = clickCollapsedItemsUntilNoneLeft;</script><style>#root[hidden],
+      #docs-root[hidden] {
+        display: none !important;
+      }</style></head><body><div id="root"></div><div id="docs-root"></div><script>window['DOCS_MODE'] = false;</script><script src="runtime~main.286b69a873d49f2f199c.bundle.js"></script><script src="vendors~main.8c0dcec0444e8e8abdf8.bundle.js"></script><script src="main.9b180401eef62c4948d5.bundle.js"></script></body></html>
